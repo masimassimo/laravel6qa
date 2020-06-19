@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        factory(App\User::class,3)->create()->each(function($u){
+            $u->questions()->saveMany(
+                factory(App\Question::class,rand(3,10))->make()
+            );
+        });
+       
+
         // $this->call(UsersTableSeeder::class);
     }
 }
